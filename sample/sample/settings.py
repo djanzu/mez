@@ -92,7 +92,17 @@ USE_MODELTRANSLATION = False
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
+# Production: Set DJANGO_ALLOWED_HOSTS env var (comma-separated domains)
+ALLOWED_HOSTS = os.environ.get(
+    "DJANGO_ALLOWED_HOSTS", ",".join(["localhost", "127.0.0.1", "0.0.0.0"])
+).split(",")
+
+# Security: SECRET_KEY must be set via DJANGO_SECRET_KEY environment variable.
+# Never commit hardcoded secrets to version control.
+SECRET_KEY = os.environ.get(
+    "DJANGO_SECRET_KEY",
+    "change-me-in-production-use-a-real-secret-key",
+)
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name

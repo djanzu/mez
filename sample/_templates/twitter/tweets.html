@@ -1,5 +1,5 @@
 
-{% load twitter_tags i18n %}
+{% load twitter_tags i18n sanitization %}
 
 {% tweets_default as tweets %}
 
@@ -14,7 +14,7 @@
         <h6><span class="glyphicon glyphicon-retweet"></span>
         <a href="http://twitter.com/{{ tweet.retweeter_user_name }}" title="{{ tweet.retweeter_full_name }}">{{ tweet.retweeter_full_name }}</a></h6>
         {% endif %}
-        <p>{{ tweet.text|safe }}<br>
+        <p>{{ tweet.text|sanitize_html }}<br>
         <small class="timespan">
         {% blocktrans with sometime=tweet.created_at|timesince %}{{ sometime }} ago{% endblocktrans %}
         <a href="http://twitter.com/{{ tweet.user_name }}/status/{{ tweet.remote_id }}"><span class="glyphicon glyphicon-new-window"></span></a>

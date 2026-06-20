@@ -4,6 +4,6 @@
 {{ message }}
 
 {% endif %}{% for field, value in fields %}
-{{ field }}: {{ value|safe }}
+{{ field }}: {{ value|sanitize_email }}
 {% endfor %}
 {% endblock %}
