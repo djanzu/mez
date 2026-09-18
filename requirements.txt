@@ -1,4 +1,4 @@
-Django==4.2.30
+Django==5.2.16
 Mezzanine==6.1.1
 Pillow==12.3.0
 beautifulsoup4==4.9.1
